@@ -9,7 +9,7 @@ namespace Marketplace.Domain
 {
     public record Price : Money
     {
-        public Price(decimal amount) : base(amount)
+        public Price(decimal amount,string currencyCode,ICurrencyLookup lookup) : base(amount,currencyCode,lookup)
         {
             if (amount < 0)
             {
