@@ -10,7 +10,7 @@ namespace Marketplace.Domain
 {
     public record Money
     {
-        private decimal Amount;
+        public decimal Amount;
         private CurrencyDetails Currency;
         public static string DefaultCurrency = "EUR";
 
