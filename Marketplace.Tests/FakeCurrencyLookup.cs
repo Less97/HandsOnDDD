@@ -14,7 +14,7 @@ namespace Marketplace.Tests
             new CurrencyDetails("EUR", true, 2),
             new CurrencyDetails("USD", true, 2),
             new CurrencyDetails("JPY", true, 2),
-            new CurrencyDetails("DEM", true, 2),
+            new CurrencyDetails("DEM", false, 2),
         };
 
         public CurrencyDetails FindCurrency(string currencyCode)
