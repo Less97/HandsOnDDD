@@ -21,5 +21,7 @@ namespace Marketplace.Domain
 
         public static Price FromDecimal(decimal amount, string currency, ICurrencyLookup currencyLookup) => new(amount, currency, currencyLookup);
 
+        public static implicit operator Decimal(Price price) => price.Amount;
+
     }
 }

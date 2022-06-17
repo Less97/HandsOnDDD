@@ -16,5 +16,7 @@ namespace Marketplace.Domain
         }
 
         public static ClassifiedAdText FromString(string text) => new(text);
+
+        public static implicit operator String(ClassifiedAdText text) => text._adText;
     }
 }

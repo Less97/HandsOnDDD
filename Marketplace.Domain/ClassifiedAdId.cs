@@ -19,5 +19,7 @@ namespace Marketplace.Domain
             _value = value;
         }
 
+        public static implicit operator Guid(ClassifiedAdId adId) => adId._value;
+
     }
 }

@@ -11,7 +11,7 @@ namespace Marketplace.Domain
     public record Money
     {
         public decimal Amount;
-        private CurrencyDetails Currency;
+        public CurrencyDetails Currency;
         public static string DefaultCurrency = "EUR";
 
         public Money(decimal amount,string currencyCode,ICurrencyLookup currencyLookup)

@@ -31,6 +31,8 @@ namespace Marketplace.Domain
                 .Replace("</b>", "**");
             return new ClassifiedAdTitle(Regex.Replace(supportedTagReplaced,"<.*?>", string.Empty));
         }
+
+        public static implicit operator String(ClassifiedAdTitle title) => title._title;
     }
 
 

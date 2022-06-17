@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Marketplace.Domain.Exceptions;
+using Marketplace.Framework;
 
 namespace Marketplace.Domain
 {
-    public class ClassifiedAd
+    public class ClassifiedAd : Entity
     {
         public ClassifiedAdId Id { get; }
 
@@ -22,17 +23,33 @@ namespace Marketplace.Domain
         {
             Title = title;
             EnsureValidState();
+            Raise(new Events.ClassifiedAdTitleChanged
+            {
+                Title = title,
+                Id = Id
+            });
         }
 
         public void UpdateText(ClassifiedAdText text)
         {
             Text = text;
             EnsureValidState();
+            Raise(new Events.ClassifiedAdTextUpdated()
+            {
+                AdText = text,
+                Id = Id
+            });
         } 
         public void UpdatePrice(Price price)
         {
             Price = price;
             EnsureValidState();
+            Raise(new Events.ClassifiedAdPriceUpdated()
+            {
+                Id = Id,
+                Price = price,
+                CurrencyCode = price.Currency.CurrencyCode
+            });
         }
 
 
@@ -40,6 +57,10 @@ namespace Marketplace.Domain
         {
             State = ClassifiedAdState.PendingReview;
             EnsureValidState();
+            Raise(new Events.ClassifiedAdSentForReview()
+            {
+                Id = Id
+            });
         }
 
         private void EnsureValidState()
