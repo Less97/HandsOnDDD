@@ -10,7 +10,7 @@ namespace Marketplace.Domain
     public record ClassifiedAdTitle
     {
         private string _title;
-        private ClassifiedAdTitle(string title)
+        public ClassifiedAdTitle(string title)
         {
             if (title.Length > 100)
             {

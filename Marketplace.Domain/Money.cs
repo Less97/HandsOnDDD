@@ -36,7 +36,7 @@ namespace Marketplace.Domain
             Currency = currency;
         }
 
-        private Money(decimal amount, CurrencyDetails currency)
+        public Money(decimal amount, CurrencyDetails currency)
         {
             Amount = amount;
             Currency = currency;

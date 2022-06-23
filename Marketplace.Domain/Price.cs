@@ -10,13 +10,16 @@ namespace Marketplace.Domain
     public record Price : Money
     {
         
-        public Price(decimal amount,string currencyCode,ICurrencyLookup lookup) : base(amount,currencyCode,lookup)
+        public Price(decimal amount,string currencyCode, ICurrencyLookup lookup) : base(amount,currencyCode,lookup)
         {
             if (amount < 0)
             {
                 throw new ArgumentException("Price cannot be negative", nameof(amount));
             }
 
+        }
+
+        internal Price(decimal amount, string currencyCode) : base(amount,new CurrencyDetails(currencyCode)) {
         }
 
         public static Price FromDecimal(decimal amount, string currency, ICurrencyLookup currencyLookup) => new(amount, currency, currencyLookup);
