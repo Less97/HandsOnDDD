@@ -1,4 +1,5 @@
-﻿using Microsoft.OpenApi.Models;
+﻿using Marketplace.ApplicationService;
+using Microsoft.OpenApi.Models;
 using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
 namespace Marketplace
@@ -17,6 +18,9 @@ namespace Marketplace
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc(x=>x.EnableEndpointRouting = false);
+            services.AddSingleton(new ClassifiedAdsApplicationService());
+            services.AddSingleton<IEntityStore, RavenDbEntityStore>();
+            services.AddScoped<IHandleCommand<Contracts.ClassifiedAds.V1.Create>>()
             services.AddSwaggerGen(c => 
                 c.SwaggerDoc("v1", new OpenApiInfo()
             {
