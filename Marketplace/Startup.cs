@@ -18,9 +18,10 @@ namespace Marketplace
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc(x=>x.EnableEndpointRouting = false);
-            services.AddSingleton(new ClassifiedAdsApplicationService());
+           
             services.AddSingleton<IEntityStore, RavenDbEntityStore>();
-            services.AddScoped<IHandleCommand<Contracts.ClassifiedAds.V1.Create>>()
+            services.AddSingleton<IApplicationService,ClassifiedAdsApplicationService>();
+            services.AddScoped<IHandleCommand<Contracts.ClassifiedAds.V1.Create>>();
             services.AddSwaggerGen(c => 
                 c.SwaggerDoc("v1", new OpenApiInfo()
             {
